@@ -1,0 +1,5 @@
+@layer base {
+  html, body, #app {
+    @apply h-full;
+  }
+}
