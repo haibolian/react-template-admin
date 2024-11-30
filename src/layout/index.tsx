@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -8,7 +9,7 @@ import SideBar from './sider';
 
 const { Header, Content } = Layout;
 
-const App: React.FC = () => {
+const LayoutPage: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -39,11 +40,11 @@ const App: React.FC = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          Content
+          <Outlet />
         </Content>
       </Layout>
     </Layout>
   );
 };
 
-export default App;
+export default LayoutPage;
