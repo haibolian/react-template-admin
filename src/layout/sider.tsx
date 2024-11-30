@@ -1,40 +1,43 @@
 
 import React, { useState } from 'react';
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from '@ant-design/icons';
 import { Layout, Menu } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const { Sider } = Layout;
 
 const SideBar: React.FC = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate()
+  const items = [
+    {
+      label: '仪表盘',
+      key: '/',
+    },
+    {
+      label: '表单',
+      key: 'form',
+      children: [
+        {
+          label: '基础表单',
+          key: '/form',
+        },
+        {
+          label: '高级表单',
+          key: '/form/pro',
+        },
+      ],
+    }
+  ]
+  const selectMenuItem = ({ key }: { key: string }) => {
+    navigate(key)
+  }
 
   return (
-    <Sider theme="light" trigger={null} collapsible collapsed={collapsed}>
+    <Sider theme="light" trigger={null} collapsible>
       <Menu
         theme="light"
         mode="inline"
-        defaultSelectedKeys={['1']}
-        items={[
-          {
-            key: '1',
-            icon: <UserOutlined />,
-            label: 'nav 1',
-          },
-          {
-            key: '2',
-            icon: <VideoCameraOutlined />,
-            label: 'nav 2',
-          },
-          {
-            key: '3',
-            icon: <UploadOutlined />,
-            label: 'nav 3',
-          },
-        ]}
+        items={items}
+        onSelect={selectMenuItem}
       />
     </Sider>
   )
