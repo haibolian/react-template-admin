@@ -1,5 +1,5 @@
 import React from 'react';
-import { userStore } from '../../store';
+import { userStore } from '../../store/userStore';
 
 const Dashboard: React.FC = () => {
 
