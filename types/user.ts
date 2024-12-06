@@ -4,6 +4,7 @@ export type UserInfo = {
   email?: string,
   phone?: string,
   about?: string,
+  routes: []
 }
 
 export type UserToken = {
