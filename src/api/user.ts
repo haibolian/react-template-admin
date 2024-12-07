@@ -1,15 +1,18 @@
+import { UserInfo } from "#/user";
+
 // 定义返回值类型
-interface LoginResponse {
+type Response<T> = {
   code: number;
-  data: {
-    accessToken: string;
-    refreshToken: string;
-  };
+  data: T;
   msg: string;
+}
+interface LoginData {
+  accessToken: string;
+  refreshToken: string;
 }
 
 // 为 loginApi 函数添加类型注解
-export const loginApi = (): Promise<LoginResponse> => {
+export const loginApi = (): Promise<Response<LoginData>> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve({
@@ -23,3 +26,27 @@ export const loginApi = (): Promise<LoginResponse> => {
     }, 500);
   });
 };
+
+export const getUserInfo = (): Promise<Response<UserInfo>> => {
+  return new Promise((resolve, reject) => {
+    
+    setTimeout(()=> {
+      resolve({
+        code: 200,
+        data: {
+          username: 'admin',
+          avatar: 'https://avatars.githubusercontent.com/u/116473695?v=4',
+          email: 'admin@gmail.com',
+          phone: '123456789',
+          about: 'I am a front-end engineer',
+          menus: [{
+            name: 'dashboard',
+            path: 'dashboard',
+            component: 'dashboard'
+          }]
+        },
+        msg: ''
+      })
+    }, 50)
+  })
+}

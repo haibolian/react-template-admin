@@ -1,29 +1,27 @@
-import { RouteObject } from 'react-router-dom'
-import { createStore } from 'zustand/vanilla'
 import { persist } from 'zustand/middleware'
 import { UserInfo, UserToken } from '#/user'
+import { create } from 'zustand'
+import { getUserInfo } from '@/api/user'
 
-type UserRoutes = RouteObject[]
-type UserStoreState = { userInfo: Partial<UserInfo>, userToken: UserToken, userRoutes: UserRoutes }
+type UserStoreState = { userInfo: Partial<UserInfo>, userToken: UserToken }
 type UserStoreAction = {
-  actions: {
-    setUserToken: (tokenObj: UserToken) => void,
-    setUserInfo: (userInfo: UserInfo) => void,
-    setUserRoutes: (routes: RouteObject[]) => void
-  }
+  setUserToken: (tokenObj: UserToken) => void,
+  setUserInfo: (userInfo: UserInfo) => void,
+  fetchUserInfo: () => Promise<UserInfo>
 }
 type UserStore = UserStoreState & UserStoreAction
 
 
-export const userStore = createStore<UserStore>()(
+export const userStore = create<UserStore>()(
   persist(set => ({
     userInfo: {},
-    userRoutes: [],
     userToken: {},
-    actions: {
-      setUserToken: (userToken: UserToken) => set({ userToken }),
-      setUserInfo: (userInfo: UserInfo) => set({ userInfo }),
-      setUserRoutes: (userRoutes: RouteObject[]) => set({ userRoutes })
+    setUserToken: (userToken: UserToken) => set({ userToken }),
+    setUserInfo: (userInfo: UserInfo) => set({ userInfo }),
+    fetchUserInfo: async (): Promise<UserInfo> => {
+      const { data } = await getUserInfo()
+      set({ userInfo: data })
+      return data
     }
   }),
   {
@@ -31,3 +29,6 @@ export const userStore = createStore<UserStore>()(
     partialize: state => ({ userToken: state.userToken })
   })
 )
+
+export const useRoutes = () => userStore(state => state.userInfo.menus)
+export const useToken = () => userStore(state => state.userToken.accessToken)

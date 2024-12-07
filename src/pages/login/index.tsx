@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const LoginPage: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm();
-  const { setUserToken } = userStore.getState().actions
+  const setUserToken = userStore(state => state.setUserToken)
   const nav = useNavigate()
   const handleSubmit = async () => {
     setLoading(true)

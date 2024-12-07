@@ -12,8 +12,6 @@ const AuthGuard = ({ children }: Props) => {
   
   if(!token) {
     return <Navigate to="/login" />
-  }else {
-    
   }
 
   return (

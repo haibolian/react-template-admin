@@ -1,10 +1,17 @@
+export type PermissionMenus = {
+  name: string,
+  path: string,
+  component: string,
+  children?: PermissionMenus[]
+}
+
 export type UserInfo = {
   username: string,
   avatar?: string,
   email?: string,
   phone?: string,
   about?: string,
-  routes: []
+  menus: PermissionMenus[]
 }
 
 export type UserToken = {
