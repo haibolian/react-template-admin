@@ -1,4 +1,6 @@
 import { UserInfo } from "#/user";
+import apiService from "@/utils/apiService";
+import { AxiosResponse } from "axios";
 
 // 定义返回值类型
 type Response<T> = {
@@ -11,42 +13,19 @@ interface LoginData {
   refreshToken: string;
 }
 
+type LoginResponse = Response<LoginData>
+
+// 枚举接口路径
+enum ApiPath {
+  Login = 'user/login',
+  UserInfo = 'user/getInfo'
+}
+
 // 为 loginApi 函数添加类型注解
-export const loginApi = (): Promise<Response<LoginData>> => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve({
-        code: 200,
-        data: {
-          accessToken: '123',
-          refreshToken: '456'
-        },
-        msg: 'success'
-      });
-    }, 500);
-  });
+export const loginApi = (data: LoginData) => {
+  return apiService.post(ApiPath.Login, data)
 };
 
-export const getUserInfo = (): Promise<Response<UserInfo>> => {
-  return new Promise((resolve, reject) => {
-    
-    setTimeout(()=> {
-      resolve({
-        code: 200,
-        data: {
-          username: 'admin',
-          avatar: 'https://avatars.githubusercontent.com/u/116473695?v=4',
-          email: 'admin@gmail.com',
-          phone: '123456789',
-          about: 'I am a front-end engineer',
-          menus: [{
-            name: 'dashboard',
-            path: 'dashboard',
-            component: 'dashboard'
-          }]
-        },
-        msg: ''
-      })
-    }, 50)
-  })
+export const getUserInfo = () => {
+  return apiService.get(ApiPath.UserInfo)
 }
