@@ -29,10 +29,6 @@ const Router: React.FC = () => {
             </AuthGuard>
           ),
           children: [
-            {
-              index: true, // 默认路由，指向 /
-              element: <Navigate to="/dashboard" />, // 实现重定向
-            },
             ...dynamicRoutes
           ],
         },

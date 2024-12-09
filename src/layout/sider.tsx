@@ -10,7 +10,7 @@ const SideBar: React.FC = () => {
   const items = [
     {
       label: '仪表盘',
-      key: '/dashboard',
+      key: '/',
     },
     {
       label: '表单',
