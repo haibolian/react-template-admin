@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BasicForm: React.FC = () => {
+const BaseForm: React.FC = () => {
   return (
     <>
       <h1>Basic Form</h1>
@@ -8,4 +8,4 @@ const BasicForm: React.FC = () => {
   );
 }
 
-export default BasicForm;
+export default BaseForm;

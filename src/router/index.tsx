@@ -23,7 +23,6 @@ const Router: React.FC = () => {
       const dynamicRoutes = generateRoutes(userInfo.menus)
       setRoutes([
         {
-          path: '/',
           element: (
             <AuthGuard>
               <LayoutPage />

@@ -18,7 +18,7 @@ const SideBar: React.FC = () => {
       children: [
         {
           label: '基础表单',
-          key: '/form',
+          key: '/form/base',
         },
         {
           label: '高级表单',
