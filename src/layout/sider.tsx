@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 
 const { Sider } = Layout;
 
-const SideBar: React.FC = () => {
+const SideBar: React.FC = React.memo(() => {
   const navigate = useNavigate()
-  const items = [
+  const [items, setItems] = useState([
     {
       label: '仪表盘',
       key: '/',
@@ -26,7 +26,7 @@ const SideBar: React.FC = () => {
         },
       ],
     }
-  ]
+  ])
   const selectMenuItem = ({ key }: { key: string }) => {
     navigate(key)
   }
@@ -34,6 +34,7 @@ const SideBar: React.FC = () => {
   return (
     <Sider theme="light" trigger={null} collapsible>
       <Menu
+        defaultSelectedKeys={['/']}
         theme="light"
         mode="inline"
         items={items}
@@ -41,6 +42,6 @@ const SideBar: React.FC = () => {
       />
     </Sider>
   )
-}
+})
 
 export default SideBar;

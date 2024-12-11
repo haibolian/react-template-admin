@@ -1,6 +1,6 @@
-import { createBrowserRouter, Navigate, RouteObject, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom'
 import Login from '../pages/login';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { userStore } from '@/store/userStore';
 import LayoutPage from '@/layout';
 import { generateRoutes } from './helper';

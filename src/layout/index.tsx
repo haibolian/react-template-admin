@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout, theme } from 'antd';
 import SideBar from './sider';
@@ -26,7 +26,9 @@ const LayoutPage: React.FC = () => {
             borderRadius: borderRadiusLG,
           }}
         >
-          <Outlet />
+          <Suspense>
+            <Outlet />
+          </Suspense>
         </Content>
       </Layout>
     </Layout>
