@@ -29,6 +29,3 @@ export const userStore = create<UserStore>()(
     partialize: state => ({ userToken: state.userToken })
   })
 )
-
-export const useRoutes = () => userStore(state => state.userInfo.menus)
-export const useToken = () => userStore(state => state.userToken.accessToken)

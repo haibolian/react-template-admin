@@ -6,12 +6,12 @@ export type PermissionMenus = {
 }
 
 export type UserInfo = {
-  username: string,
+  username?: string,
   avatar?: string,
   email?: string,
   phone?: string,
   about?: string,
-  menus: PermissionMenus[]
+  menus?: PermissionMenus[]
 }
 
 export type UserToken = {

@@ -2,8 +2,7 @@ import React, { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout, theme } from 'antd';
 import SideBar from './sider';
-
-const { Header, Content } = Layout;
+import Header from './header';
 
 const LayoutPage: React.FC = () => {
   const {
@@ -14,10 +13,8 @@ const LayoutPage: React.FC = () => {
     <Layout className='h-full'>
       <SideBar></SideBar>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }}>
-          
-        </Header>
-        <Content
+        <Header />
+        <Layout.Content
           style={{
             margin: '10px',
             padding: 24,
@@ -29,7 +26,7 @@ const LayoutPage: React.FC = () => {
           <Suspense>
             <Outlet />
           </Suspense>
-        </Content>
+        </Layout.Content>
       </Layout>
     </Layout>
   );

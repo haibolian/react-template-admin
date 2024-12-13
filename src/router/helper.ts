@@ -1,12 +1,6 @@
 import { PermissionMenus } from "#/user";
-import React, { lazy, Suspense } from "react";
-import { Outlet, RouteObject } from "react-router-dom";
-import LayoutPage from "@/layout";
-
-
-const ENTRY_PATH = "/src/pages";
-const PAGES = import.meta.glob("/src/pages/**/*.tsx");
-const loadComponentFromPath = (path: string) => PAGES[`${ENTRY_PATH}${path}`];
+import React, { lazy } from "react";
+import {RouteObject } from "react-router-dom";
 
 const loadComponent = (path: string) => {
   return lazy(() => import(`../pages/${path}`));
