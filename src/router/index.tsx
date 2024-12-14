@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom'
 import Login from '../pages/login';
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { userStore } from '@/store/userStore';
 import LayoutPage from '@/layout';
 import { generateRoutes } from './helper';
@@ -20,7 +20,7 @@ const Router: React.FC = () => {
   useEffect(() => {
     const initRoutes = async () => {
       const userInfo = await fetchUserInfo()
-      const dynamicRoutes = generateRoutes(userInfo.menus)
+      const dynamicRoutes = generateRoutes(userInfo.menus!)
       setRoutes([
         {
           element: (
@@ -41,8 +41,23 @@ const Router: React.FC = () => {
   if (routes?.length === 0) {
     return <></>;
   }
-  const router = createBrowserRouter(routes)
-  return <RouterProvider router={router} />
+  const router = createBrowserRouter(routes,{
+    future: {
+      v7_partialHydration: true,
+      v7_normalizeFormMethod: true,
+      v7_relativeSplatPath: true,
+      v7_fetcherPersist: true,
+      v7_skipActionErrorRevalidation: true
+    },
+  })
+  return (
+    <RouterProvider
+      future={{
+        v7_startTransition: true,
+      }}
+      router={router}
+    />
+  )
 }
 
 export default Router;

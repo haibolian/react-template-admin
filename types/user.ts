@@ -2,7 +2,14 @@ export type PermissionMenus = {
   name: string,
   path: string,
   component: string,
-  children?: PermissionMenus[]
+  children?: PermissionMenus[],
+  redirect?: string,
+  order?: number,
+  show?: boolean,
+  inLayout?: boolean,
+  keepAlive?: boolean,
+  title: string,
+  icon?: string,
 }
 
 export type UserInfo = {
