@@ -1,10 +1,10 @@
 import React from 'react';
-import { userStore } from '../../store/userStore';
+import ReactIcon from '@/assets/react.svg?react'
 
 const Dashboard: React.FC = () => {
   return (
     <>
-      <span>dashboard</span>
+      <ReactIcon></ReactIcon>
     </>
   );
 }
