@@ -8,7 +8,14 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_')
 
   return {
-    plugins: [react(), tsconfigPaths(), svgr()],
+    plugins: [
+      react(),
+      tsconfigPaths(),
+      svgr({
+        svgrOptions: { exportType: 'named', ref: true, svgo: false, titleProp: true },
+        include: '**/*.svg',
+      })
+  ],
     server: {
       proxy: {
         '/api': {
