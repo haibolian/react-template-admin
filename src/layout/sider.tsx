@@ -1,26 +1,13 @@
 
-import React, { lazy, useMemo, useState } from 'react';
-import { Layout, Menu, MenuProps } from 'antd';
+import React, { useMemo } from 'react';
+import { Layout, Menu } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { userStore } from '@/store/userStore';
 import { useStore } from 'zustand';
-import { PermissionMenus } from '#/user';
-const svgFiles = import.meta.glob('../assets/svgs/*.svg', { eager: true }); // 根据你的路径修改
-type MenuItem = Required<MenuProps>['items'][number];
-const { Sider } = Layout;
+import { buildMenu } from './helper';
+import Logo from './Logo';
 
-const buildMenu = (menus: PermissionMenus[], context = '/'): MenuItem [] => {
-  if(!menus) return undefined!;
-  return menus.map((menu) => {
-    const Icon = svgFiles[`../assets/svgs/${menu.icon}.svg`]?.ReactComponent
-    return {
-      label: menu.title,
-      key: context + menu.path,
-      children: buildMenu(menu.children!, context + menu.path + '/'),
-      icon: Icon ? <Icon /> : null
-    }
-  });
-}
+const { Sider } = Layout;
 
 const SideBar: React.FC = React.memo(() => {
   const navigate = useNavigate()
@@ -36,6 +23,7 @@ const SideBar: React.FC = React.memo(() => {
 
   return (
     <Sider theme="light" trigger={null} collapsible>
+      <Logo />
       <Menu
         defaultSelectedKeys={['/']}
         theme="light"
