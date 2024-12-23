@@ -6,10 +6,13 @@ import { userStore } from '@/store/userStore';
 import { useStore } from 'zustand';
 import { buildMenu } from './helper';
 import Logo from './Logo';
+import { useLayoutContext } from './context/LayoutContext';
 
 const { Sider } = Layout;
 
 const SideBar: React.FC = React.memo(() => {
+  const { collapsed } = useLayoutContext()
+
   const navigate = useNavigate()
   const menus = useStore(userStore, state => state.userInfo.menus || [])
 
@@ -29,6 +32,7 @@ const SideBar: React.FC = React.memo(() => {
         theme="light"
         mode="inline"
         items={memoizedMenus}
+        inlineCollapsed={collapsed}
         onSelect={selectMenuItem}
       />
     </Sider>

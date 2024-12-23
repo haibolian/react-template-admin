@@ -1,8 +1,11 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Layout, theme } from 'antd';
 import SideBar from './sider';
 import Header from './header';
+import { LayoutProvider } from './context/LayoutContext';
+
+
 
 const LayoutPage: React.FC = () => {
   const {
@@ -10,25 +13,27 @@ const LayoutPage: React.FC = () => {
   } = theme.useToken();
 
   return (
-    <Layout className='h-full'>
-      <SideBar></SideBar>
-      <Layout>
-        <Header />
-        <Layout.Content
-          style={{
-            margin: '10px',
-            padding: 24,
-            minHeight: 280,
-            background: colorBgContainer,
-            borderRadius: borderRadiusLG,
-          }}
-        >
-          <Suspense>
-            <Outlet />
-          </Suspense>
-        </Layout.Content>
+    <LayoutProvider>
+      <Layout className='h-full'>
+        <SideBar></SideBar>
+        <Layout>
+          <Header />
+          <Layout.Content
+            style={{
+              margin: '10px',
+              padding: 24,
+              minHeight: 280,
+              background: colorBgContainer,
+              borderRadius: borderRadiusLG,
+            }}
+          >
+            <Suspense>
+              <Outlet />
+            </Suspense>
+          </Layout.Content>
+        </Layout>
       </Layout>
-    </Layout>
+    </LayoutProvider>
   );
 };
 

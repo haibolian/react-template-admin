@@ -1,12 +1,12 @@
 import { Icon } from '@iconify/react';
 import SolarHamburgerMenuOutline from '@iconify-icons/solar/hamburger-menu-outline';
 import { Button, Layout } from 'antd';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-
+import { useLayoutContext } from './context/LayoutContext';
 
 const Header: React.FC = () => {
+  const { collapsed, setcollapsed } = useLayoutContext()
   const navigate = useNavigate()
   const signOut = () => {
     navigate('/login')
@@ -16,6 +16,7 @@ const Header: React.FC = () => {
     <Layout.Header className='bg-white px-2 flex justify-between items-center'>
       <div className='flex items-center gap-3'>
         <Button
+          onClick={() => setcollapsed(!collapsed)}
           className='text-xl'
           color="default"
           variant="text"
