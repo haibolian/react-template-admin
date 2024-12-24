@@ -5,11 +5,12 @@ type SvgProps = {
   name: string,
   width?: string,
   height?: string,
+  className: string
 }
-const SvgIcon = ({ name, width = "20", height = "20" }: SvgProps) => {
+const SvgIcon = ({ name, width = "20", height = "20", className }: SvgProps) => {
   const Icon = svgFiles[`../assets/svgs/${name}.svg`]?.ReactComponent
   
-  return Icon ? <Icon width={width} /> : <Error width={width} height={height} />
+  return Icon ? <Icon className={className} width={width} /> : <Error width={width} height={height} />
 }
 
 export default SvgIcon;

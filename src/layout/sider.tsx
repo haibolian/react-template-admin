@@ -25,7 +25,7 @@ const SideBar: React.FC = React.memo(() => {
   }
 
   return (
-    <Sider theme="light" trigger={null} collapsible>
+    <Sider theme="light" trigger={null} collapsible collapsed={collapsed}>
       <Logo />
       <Menu
         defaultSelectedKeys={['/']}

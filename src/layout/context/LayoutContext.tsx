@@ -6,7 +6,7 @@ interface LayoutContextType {
   setcollapsed: (collapsed: boolean) => void;
 }
 
-export const LayoutContext = createContext<LayoutContextType | undefined>(undefined)
+const LayoutContext = createContext<LayoutContextType | undefined>(undefined)
 
 export const LayoutProvider = ({ children }: { children: ReactNode }) => {
 

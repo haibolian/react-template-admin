@@ -5,8 +5,6 @@ import SideBar from './sider';
 import Header from './header';
 import { LayoutProvider } from './context/LayoutContext';
 
-
-
 const LayoutPage: React.FC = () => {
   const {
     token: { colorBgContainer, borderRadiusLG },
