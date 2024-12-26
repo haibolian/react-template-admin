@@ -22,7 +22,7 @@ const UserAvatar: React.FC = () => {
 
   return (
     <Dropdown menu={{items, onClick}} trigger={['click']}>
-      <Avatar  src={ userInfo.avatar } />
+      <Avatar className='cursor-pointer' src={ userInfo.avatar } />
     </Dropdown>
   );
 }
