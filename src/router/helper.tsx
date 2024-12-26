@@ -14,7 +14,8 @@ export const generateRoutes = (menus: PermissionMenus[]): RouteObject[] => {
     if(menu.redirect) {
       redirectRoutes.push({
         path: menu.path,
-        element: <Navigate to={menu.redirect!} replace/>
+        element: <Navigate to={menu.redirect!} replace/>,
+        handle: { title: menu.title }
       })
       if(!menu.children?.length) return;
     }
