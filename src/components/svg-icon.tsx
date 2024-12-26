@@ -5,7 +5,7 @@ type SvgProps = {
   name: string,
   width?: string,
   height?: string,
-  className: string
+  className?: string
 }
 const SvgIcon = ({ name, width = "20", height = "20", className }: SvgProps) => {
   const Icon = svgFiles[`../assets/svgs/${name}.svg`]?.ReactComponent

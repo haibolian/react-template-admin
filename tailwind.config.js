@@ -5,7 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'bounce-mild': 'bounce-mild 3s infinite',
+      },
+      keyframes: {
+        'bounce-mild': {
+          '0%, 100%': { transform: 'translateY(-20px)' },
+          '50%': { transform: 'translateY(0)' },
+        }
+      }
+    },
   },
   plugins: [],
 }
