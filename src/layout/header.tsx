@@ -18,6 +18,7 @@ const Header: React.FC = () => {
       title: route.handle.title,
       path: index === routes.length - 1 ? undefined : route.pathname
     }))
+    document.title = items[items.length - 1].title
     setCrumbItems(items)
   }, [matches])
 
