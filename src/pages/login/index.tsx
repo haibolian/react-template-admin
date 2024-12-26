@@ -30,7 +30,7 @@ const LoginPage: React.FC = () => {
         <img src={logoSrc} width={45} alt="" />
         <h2 className='text-xl text-gray-700 font-medium'>React Admin</h2>
       </div>
-      <div className='w-2/3 bg-gray-100 flex flex-col items-center justify-center'>
+      <div className='w-2/3 bg-gray-100 flex flex-col items-center justify-center bg-login-gradient'>
         <SvgIcon className='w-80 h-80 animate-bounce-mild' name='login-bg' />
         <div className='text-center'>
           <h2 className='text-2xl text-gray-700'>A Sample React Admin Template</h2>

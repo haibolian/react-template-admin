@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'login-gradient': 'linear-gradient(45deg, #eee, #1677ff20, #eee);'
+      },
       animation: {
         'bounce-mild': 'bounce-mild 3s infinite',
       },
