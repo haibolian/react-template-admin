@@ -19,7 +19,7 @@ export const generateRoutes = (menus: PermissionMenus[]): RouteObject[] => {
       if(!menu.children?.length) return;
     }
 
-    const route: RouteObject = { path: menu.path };
+    const route: RouteObject = { path: menu.path, handle: { title: menu.title } };
     if(menu.component) route.element = loadComponent(menu.component)
     if (menu.children && menu.children.length > 0) {
       route.children = generateRoutes(menu.children);

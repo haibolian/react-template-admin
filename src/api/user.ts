@@ -1,5 +1,5 @@
 import { UserInfo } from "#/user";
-import apiService from "@/utils/apiService";
+import apiService from "@/api/apiService";
 import { AxiosResponse } from "axios";
 
 // 定义返回值类型

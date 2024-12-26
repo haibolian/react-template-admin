@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 
 const ProForm: React.FC = () => {
+  console.log('render-pro-form');
   return (
     <h1>Pro Form</h1>
   );

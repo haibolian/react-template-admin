@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '@/assets/images/react.png'
-import { useLayoutContext } from './context/LayoutContext';
+import { useLayoutContext } from '../context/LayoutContext';
 
 const Logo: React.FC = () => {
   const { collapsed } = useLayoutContext()
