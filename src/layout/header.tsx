@@ -6,6 +6,7 @@ import { Link, useMatches } from 'react-router-dom';
 import { useLayoutContext } from './context/LayoutContext';
 import { BreadcrumbItemType, ItemType } from 'antd/es/breadcrumb/Breadcrumb';
 import UserAvatar from './components/UserAvatar';
+import TabBar from './tabs';
 
 const Header: React.FC = () => {
   const matches = useMatches()
@@ -28,8 +29,8 @@ const Header: React.FC = () => {
   }
 
   return (
-    <Layout.Header className='bg-white px-2 flex justify-between items-center'>
-      <Flex className='w-full' align='center' justify='space-between'>
+    <Layout.Header className='bg-white px-2 flex flex-col justify-around'>
+      <Flex className='w-full h-12' align='center' justify='space-between'>
         <Flex flex={1} align='center' gap={20}>
           <Button
             onClick={() => setcollapsed(!collapsed)}
@@ -44,6 +45,7 @@ const Header: React.FC = () => {
           <UserAvatar />
         </Flex>
       </Flex>
+      <TabBar />
     </Layout.Header>
   );
 }

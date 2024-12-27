@@ -16,6 +16,7 @@ const LayoutPage: React.FC = () => {
         <SideBar></SideBar>
         <Layout>
           <Header />
+          
           <Layout.Content
             style={{
               margin: '10px',
