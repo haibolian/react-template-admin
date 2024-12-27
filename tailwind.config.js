@@ -10,7 +10,7 @@ export default {
         'login-gradient': 'linear-gradient(45deg, #eee, #1677ff20, #eee);'
       },
       animation: {
-        'bounce-mild': 'bounce-mild 3s infinite',
+        'bounce-mild': 'bounce-mild 4s infinite ease-in-out',
       },
       keyframes: {
         'bounce-mild': {
