@@ -12,11 +12,10 @@ const LayoutPage: React.FC = () => {
 
   return (
     <LayoutProvider>
-      <Layout className='h-full'>
+      <Layout hasSider className='h-full'>
         <SideBar></SideBar>
         <Layout>
           <Header />
-          
           <Layout.Content
             style={{
               margin: '10px',
