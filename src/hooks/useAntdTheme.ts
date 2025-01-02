@@ -16,8 +16,8 @@ const themePatchToken = {
   dark: {
     components: {
       Layout: {
-        headerBg: '#000',
-        siderBg: '#000',
+        headerBg: 'rgb(20, 20, 20)',
+        siderBg: 'rgb(20, 20, 20)',
       }
     }
   }

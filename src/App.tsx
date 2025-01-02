@@ -9,11 +9,12 @@ function App() {
     <ConfigProvider componentSize="middle" theme={{
       algorithm,
       token: {
+        motion: false,
       },
       components: {
         Layout: {
           headerHeight: '5rem',
-          ...themePatch.components.Layout
+          ...themePatch.components.Layout,
         },
       }
     }}>

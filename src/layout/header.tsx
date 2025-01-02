@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { MoonFilled, SunFilled } from "@ant-design/icons";
 import SolarHamburgerMenuOutline from '@iconify-icons/solar/hamburger-menu-outline';
-import { Breadcrumb, Button, Dropdown, Flex, Layout } from 'antd';
+import { Breadcrumb, Button, Flex, Layout } from 'antd';
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useMatches } from 'react-router-dom';
 import { useLayoutContext } from './context/LayoutContext';
@@ -36,8 +36,21 @@ const Header: React.FC = () => {
 
   const ThemeModeIcon = useMemo(() => {
     const isDark = theme === 'auto' ? getSysTheme() === 'dark' : theme === 'dark'
-    if(isDark) return <MoonFilled onClick={() => setTheme('light')} className='cursor-pointer text-xl' />
-    return <SunFilled onClick={() => setTheme('dark')} className='cursor-pointer text-xl' />
+    return isDark 
+      ? <MoonFilled
+          className='cursor-pointer text-xl'
+          onClick={(e) => {
+            e.preventDefault()
+            setTheme('light')
+          }}
+        />
+      : <SunFilled
+          className='cursor-pointer text-xl'
+          onClick={(e) => {
+            e.preventDefault()
+            setTheme('dark')
+          }} 
+        />
   }, [theme])
 
   return (
