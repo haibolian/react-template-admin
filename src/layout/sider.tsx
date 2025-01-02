@@ -34,10 +34,9 @@ const SideBar: React.FC = React.memo(() => {
   }, [location]);
 
   return (
-    <Sider theme="light" trigger={null} collapsible collapsed={collapsed}>
+    <Sider trigger={null} collapsible collapsed={collapsed}>
       <Logo />
       <Menu
-        theme="light"
         mode="inline"
         items={memoizedMenus}
         inlineCollapsed={collapsed}

@@ -1,17 +1,23 @@
 import { Icon } from '@iconify/react';
+import { MoonFilled, SunFilled } from "@ant-design/icons";
 import SolarHamburgerMenuOutline from '@iconify-icons/solar/hamburger-menu-outline';
-import { Breadcrumb, Button, Flex, Layout } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { Breadcrumb, Button, Dropdown, Flex, Layout } from 'antd';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useMatches } from 'react-router-dom';
 import { useLayoutContext } from './context/LayoutContext';
 import { BreadcrumbItemType, ItemType } from 'antd/es/breadcrumb/Breadcrumb';
 import UserAvatar from './components/UserAvatar';
 import TabBar from './tabs';
+import { useStore } from 'zustand';
+import settingStore from '@/store/settingStore';
+import { getSysTheme } from '@/utils/system';
 
 const Header: React.FC = () => {
   const matches = useMatches()
   const [crumbItems, setCrumbItems] = useState<ItemType[]>([])
   const { collapsed, setcollapsed } = useLayoutContext()
+  const theme = useStore(settingStore, state => state.theme)
+  const setTheme = useStore(settingStore, state => state.setTheme)
   
   useEffect(() => {
     const routes = matches.slice(1) 
@@ -28,8 +34,14 @@ const Header: React.FC = () => {
     return path ? <Link to={path}>{ title }</Link> : title
   }
 
+  const ThemeModeIcon = useMemo(() => {
+    const isDark = theme === 'auto' ? getSysTheme() === 'dark' : theme === 'dark'
+    if(isDark) return <MoonFilled onClick={() => setTheme('light')} className='cursor-pointer text-xl' />
+    return <SunFilled onClick={() => setTheme('dark')} className='cursor-pointer text-xl' />
+  }, [theme])
+
   return (
-    <Layout.Header className='bg-white px-2 flex flex-col justify-around'>
+    <Layout.Header className='px-2 flex flex-col justify-around'>
       <Flex className='w-full h-12' align='center' justify='space-between'>
         <Flex flex={1} align='center' gap={20}>
           <Button
@@ -41,7 +53,8 @@ const Header: React.FC = () => {
           </Button>
           <Breadcrumb itemRender={itemRender} items={crumbItems}></Breadcrumb>
         </Flex>
-        <Flex flex={1} justify='flex-end' gap={10}>
+        <Flex flex={1} justify='flex-end' align='center' gap={10}>
+          { ThemeModeIcon }
           <UserAvatar />
         </Flex>
       </Flex>
