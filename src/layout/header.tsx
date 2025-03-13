@@ -11,6 +11,8 @@ import TabBar from './tabs';
 import { useStore } from 'zustand';
 import settingStore from '@/store/settingStore';
 import { getSysTheme } from '@/utils/system';
+import useFullscreen from '@/hooks/useFullscreen';
+import SvgIcon from '@/components/svg-icon';
 
 const Header: React.FC = () => {
   const matches = useMatches()
@@ -34,6 +36,13 @@ const Header: React.FC = () => {
     return path ? <Link to={path}>{ title }</Link> : title
   }
 
+  const { isFullscreen, toggleFullscreen } = useFullscreen()
+  const Fullscreen = useMemo(() => {
+    return isFullscreen
+      ? <div onClick={toggleFullscreen}><SvgIcon name='offscreen' /></div>
+      : <div onClick={toggleFullscreen}><SvgIcon name='fullscreen' /></div>
+  }, [isFullscreen])
+
   const ThemeModeIcon = useMemo(() => {
     const isDark = theme === 'auto' ? getSysTheme() === 'dark' : theme === 'dark'
     return isDark 
@@ -54,8 +63,8 @@ const Header: React.FC = () => {
   }, [theme])
 
   return (
-    <Layout.Header className='px-2 flex flex-col justify-around'>
-      <Flex className='w-full h-12' align='center' justify='space-between'>
+    <Layout.Header className='px-2 flex flex-col justify-around h-22'>
+      <Flex className='w-full h-28' align='center' justify='space-between'>
         <Flex flex={1} align='center' gap={20}>
           <Button
             onClick={() => setcollapsed(!collapsed)}
@@ -67,6 +76,7 @@ const Header: React.FC = () => {
           <Breadcrumb itemRender={itemRender} items={crumbItems}></Breadcrumb>
         </Flex>
         <Flex flex={1} justify='flex-end' align='center' gap={10}>
+          { Fullscreen }
           { ThemeModeIcon }
           <UserAvatar />
         </Flex>
